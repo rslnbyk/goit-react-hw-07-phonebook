@@ -1,16 +1,23 @@
+import { ContactForm } from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
+import { ContactsList } from './ContactsList/ContactsList';
+import { useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
+
 export const App = () => {
+  const contacts = useSelector(getContacts);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <h1>Phonebook</h1>
+      <ContactForm />
+      {contacts.length > 0 && (
+        <>
+          <h2>Contacts</h2>
+          <Filter />
+          <ContactsList />
+        </>
+      )}
+    </>
   );
 };
